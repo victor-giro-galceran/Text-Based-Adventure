@@ -86,7 +86,7 @@ public class Principal {
         do {
 
             System.out.print("\t"  + ">> ");
-            input = in.readLine();
+            input = in.readLine().toLowerCase();
 
             switch (input) {
 
