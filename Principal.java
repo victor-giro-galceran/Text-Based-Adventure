@@ -15,6 +15,8 @@ import java.io.ObjectOutputStream;
 
 public class Principal {
 
+    static Scanner scan = new Scanner(System.in);
+    
     static Juego juego;
 
     private static void guardar_partida() {
@@ -71,45 +73,71 @@ public class Principal {
 
     public static void main(String[] args) throws IOException {
 
+    	boolean volver = false;
+    	
+    	while (volver = true) {
+        
+            BufferedReader in;
+            String input;
+            String output = "";
 
-        BufferedReader in;
-        String input;
-        String output = "";
+            juego = new Juego();
 
-        juego = new Juego();
+            in = new BufferedReader(new InputStreamReader(System.in));
 
-        in = new BufferedReader(new InputStreamReader(System.in));
+            juego.mostrar_introduccion();
+            juego.mostrar_jugador();
 
-        juego.mostrar_introduccion();
-        juego.mostrar_jugador();
+            do {
 
-        do {
+                System.out.print("\t"  + ">> ");
+                input = in.readLine().toLowerCase();
 
-            System.out.print("\t"  + ">> ");
-            input = in.readLine().toLowerCase();
+                switch (input) {
 
-            switch (input) {
+                    case "guardar":
 
-                case "guardar":
+                        guardar_partida();
+                        break;
 
-                    guardar_partida();
-                    break;
+                    case "cargar":
 
-                case "cargar":
+                        cargar_partida();
+                        break;
 
-                    cargar_partida();
-                    break;
+                    default:
 
-                default:
+                        output = juego.ejecutar_comando(input);
+                        break;
+                }
 
-                    output = juego.ejecutar_comando(input);
-                    break;
-            }
+                System.out.println(output);
 
-            System.out.println(output);
+            } while (Juego.muerte != true && !input.equals("q"));
 
-        } while (Actor.jugador.getVida() <= 0 || !"q".equals(input));
+            System.out.print(
+	        		
+	        		  "\n\t" + "¿Quieres volver a jugar? (si / no)"
+	        		+ "\n" 
+	        		+ "\n\t" + ">> "
+	        		
+	        		);
+	        
+	        String opcion = scan.nextLine().toLowerCase();
+	        
+	        if (opcion.equals("si")) {
+	        	
+	        	volver = true;
+	        	Juego.contador_oro(0);
+	        	
+	        } else {
+	        	
+	        	volver = false;
+	        	
+	        }
 
+        }
+        
     }
 
 }
