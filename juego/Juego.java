@@ -18,6 +18,7 @@ public class Juego implements java.io.Serializable {
 
 	static Scanner scan = new Scanner(System.in);
 
+	public static boolean muerte = false;
 	static String nombre_jugador = "jugador";
 	static int oro = 0;
 	
@@ -25,7 +26,7 @@ public class Juego implements java.io.Serializable {
 	static boolean cabaña 	= false;
 	static boolean pozo 	= false;
 	static boolean cueva 	= false;
-	static boolean rio 		= false;
+	static boolean rio 	= false;
 	static boolean bosque	= false;
 	static boolean mina 	= false;
 	static boolean montaña 	= false;
@@ -35,66 +36,65 @@ public class Juego implements java.io.Serializable {
 	
 	static int salida_rio = -1;
 	
-    private ArrayList<Habitacion> mapa;
+	private ArrayList<Habitacion> mapa;
     
-    List<String> comandos = new ArrayList<>(Arrays.asList(
+	List<String> comandos = new ArrayList<>(Arrays.asList(
 
-    		"help",
-    		"mapa",
-    		"ayuda",
-    		"limpiar",
-    		"clear",
-    		"vida",
-    		"oro",
-    		"cls",
-    		"yo",
-    		"?",
+		
+		"help",
+		"mapa",
+		"ayuda",
+		"limpiar",
+		"clear",
+		"vida",
+		"oro",
+		"cls",
+		"yo",
+		"?",
 
-    		"buscar",
-            "recoger",
-            "soltar",
-            "hablar",
-            "usar",
-            "utilizar",
-            "encender",
+	
+		"buscar",
+		"recoger",
+		"soltar",
+		"hablar",
+		"usar",
+		"utilizar",
+		"encender",
             
-            // "apagar",
-            // "abrir",      
-            // "subir",
-            
-            "inventario",
+         	"inventario",
          	"i",
             
-            
-            "norte",
-            "sur",
-            "este",
-            "oeste", 
+         
+		"norte",
+		"sur",
+		"este",
+		"oeste", 
                       
-            
-            "guardar",
-            "cargar"
-            
-    		));
+		
+		"guardar",
+		"cargar"
+    		
+	));
     
-    List<String> objectos = new ArrayList<>(Arrays.asList(
+   
+	List<String> objectos = new ArrayList<>(Arrays.asList(
     		
-    		"mochila",
-    		"hoguera",
-    		"cuerda",
-    		"mesa",
-    		"madera",
-    		"piedra",
-    		"oro",
-    		"mision",
-    		"tela",
+		"mochila",
+		"hoguera",
+		"cuerda",
+		"mesa",
+		"madera",
+		"piedra",
+		"oro",
+		"mision",
+		"tela",
+	
+		"antorcha",
+		"escalera",
+		"puñal",
+		"patatas"
 
-    		"antorcha",
-    		"escalera",
-    		"puñal",
-    		"patatas"
-    		
-    		));
+	));
 
     public Juego() {
     	
@@ -1010,6 +1010,8 @@ public class Juego implements java.io.Serializable {
 																						opcion_nivel_1 = 0;
 
 																						mostrar_string_lento("\n\t" + "¡Has muerto!" + "\n");
+																						
+																						muerte = true;
 
 																						Actor.jugador.setVida(0);
 
