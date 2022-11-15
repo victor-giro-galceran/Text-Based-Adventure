@@ -34,7 +34,7 @@ public class Juego implements java.io.Serializable {
 	static boolean granja 	= false;
 	static boolean mercado	= false;
 	
-	static int salida_rio = -1;
+	static int salida_rio = Direccion.SINSALIDA;
 	
 	private ArrayList<Habitacion> mapa;
     
